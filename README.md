@@ -44,7 +44,11 @@ also link css
 main and header css
 main will include all other css
 the naming convention of the css i am using is bem
-Block element and modifier
+Block element and modifier 3. 3. creating ingredient component
+created burger.jsx fc under burger folder and ingredient.jsx fc under ingredient folder
+added css ingredient center and 5ps margin and img 80% width
+
+ingredient have a prop named ingredientName
 
 # Getting Started with Create React App
 

@@ -1,6 +1,6 @@
 @import-normalize;
 @import "./header.css";
-
+@import "./ingredient.css";
 *,
 *::before,
 *::after {
