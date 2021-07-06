@@ -69,6 +69,20 @@ in control there we created an array of three with our ingredients , give more a
 
 now the control is quite big but later i need to make it small
 
+6. add and remove ingredients
+   myArray.find(x => x.id === '45'); // find object property in array
+
+myArray.findIndex(x => x.id === '45'); // find index of object property
+
+again had problem with bind
+always bind to this
+
+.bind(this)
+
+or array syntax =()=>{
+
+}
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

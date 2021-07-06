@@ -2,7 +2,7 @@ import React from "react";
 
 import { Card, CardHeader, CardBody, CardFooter, Button } from "reactstrap";
 
-export default function Control() {
+export default function Control({ handleMoreLessIngredient }) {
   const controls = ["Cheese", "Meat", "Salad"];
   return (
     <div>
@@ -17,8 +17,18 @@ export default function Control() {
               <div className="me-5 ms-auto flex-fill align-items-center">
                 {control}
               </div>
-              <Button className="btn btn-danger btn-sm m-1">less</Button>
-              <Button className="btn btn-success btn-sm m-1">More</Button>
+              <Button
+                className="btn btn-danger btn-sm m-1"
+                onClick={() => handleMoreLessIngredient(control, -1)}
+              >
+                less
+              </Button>
+              <Button
+                className="btn btn-success btn-sm m-1"
+                onClick={() => handleMoreLessIngredient(control, 1)}
+              >
+                More
+              </Button>
             </div>
           ))}
         </CardBody>
