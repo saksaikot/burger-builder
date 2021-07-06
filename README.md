@@ -1,3 +1,28 @@
+23.Burger Builder Project
+1.project setup
+
+a. npm init react-app appName
+
+b.to clean the react project only index.html file is needed in public folder.
+favicon.ico can be keep there for web icon
+
+in src folder app.js and index.js need to be kept
+
+service worker is for mobile and offline mode
+
+c. install dependency for this project
+npm i bootstrap reactstrap react-popper axios --save
+
+d. import bootstrap in index.js
+import "bootstrap/dist/css/bootstrap.min.css";
+e. created MainComponent folder, inside main.js and BurgerBuilder.jsx under BurgerBuilder folder. it is a class component, will return a text burger builder. then under Header folder there is Header.jsx it will have same simple text like header, it is a functional component.
+
+then import Header and BurgerBuilder in Main.jsx
+
+then finally import Main.jsx into app.js
+
+now run and test the outcome
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
