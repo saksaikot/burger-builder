@@ -3,13 +3,20 @@ import Ingredient from '../Ingredient/Ingredient'
 
 
 
-export default function Burger() {
+export default function Burger({ingredients}) {
+
+  let ingredientElement=[]
+
+  ingredients.map(ingredient=>[...Array(ingredient.amount).keys()].map(_=>ingredientElement.push(
+    <Ingredient key={Math.random()}  ingredientName={ingredient.name}/>
+  )));
+
+  if(ingredientElement.length===0)ingredientElement=<p>Please add some ingredients</p>;
+
   return (
-    <div>
+    <div className="burger">
       <Ingredient  ingredientName="Top"/>
-      <Ingredient  ingredientName="Salad"/>
-      <Ingredient  ingredientName="Meat"/>
-      <Ingredient  ingredientName="Cheese"/>
+      {ingredientElement}
       <Ingredient  ingredientName="Bottom"/>
     </div>
   )

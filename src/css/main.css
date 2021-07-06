@@ -1,6 +1,7 @@
 @import-normalize;
 @import "./header.css";
 @import "./ingredient.css";
+@import "./burger.css";
 *,
 *::before,
 *::after {
