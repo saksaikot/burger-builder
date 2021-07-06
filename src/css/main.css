@@ -1,0 +1,8 @@
+@import-normalize;
+@import "./header.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

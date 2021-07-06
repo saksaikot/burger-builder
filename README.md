@@ -23,6 +23,29 @@ then finally import Main.jsx into app.js
 
 now run and test the outcome
 
+2.Creating navigation bar,
+will use some components from reactstrap
+
+like Navbar
+NavbarBrand,Nav,NavItem,NavLink
+
+structure
+
+Navbar
+NavbarBrand
+Nav
+NavItem
+NavLink
+
+link has href attribute
+
+also link css
+
+main and header css
+main will include all other css
+the naming convention of the css i am using is bem
+Block element and modifier
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
