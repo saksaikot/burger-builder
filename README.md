@@ -60,6 +60,15 @@ load elements from state of burgerbuilder
 
 added css to burger and made the y scrollbar hidden
 
+5.Controls component
+
+created controls component and added some class to it like
+d-flex flex-row / flex-column justify-content-center align-items center
+
+in control there we created an array of three with our ingredients , give more and less button to each item
+
+now the control is quite big but later i need to make it small
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
