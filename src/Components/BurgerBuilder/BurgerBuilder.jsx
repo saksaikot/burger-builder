@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Burger from "./Burger/Burger";
 import Control from "./Control/Control";
 
+import OrderModal from "./Summery/OrderModal";
+
+const BASE_PRICE = 80;
 const INGREDIENTS_PRICE = {
   Salad: 20,
   Cheese: 40,
@@ -15,7 +18,9 @@ export default class BurgerBuilder extends Component {
       { name: "Meat", amount: 0 },
       { name: "Cheese", amount: 0 },
     ],
-    totalPrice: 80,
+    totalPrice: BASE_PRICE,
+    modalOpen: false,
+    purchasable: false,
   };
 
   handleMoreLessIngredient(name, amount) {
@@ -25,19 +30,37 @@ export default class BurgerBuilder extends Component {
     if (ingredients[index].amount === 0 && amount === -1) return;
     const totalPrice = this.state.totalPrice + amount * INGREDIENTS_PRICE[name];
     ingredients[index].amount += amount;
-    this.setState({ ingredients, totalPrice });
+    let purchasable = true;
+    if (totalPrice === BASE_PRICE) {
+      purchasable = false;
+    }
+    this.setState({ ingredients, totalPrice, purchasable });
     console.log(name, amount);
   }
+
+  handelToggleModel = () => {
+    this.setState({ modalOpen: !this.state.modalOpen });
+  };
   render() {
     const { ingredients } = this.state;
     return (
-      <div className="container d-flex flex-md-row flex-column justify-content-center align-items-center">
-        <Burger ingredients={ingredients} />
-        <Control
-          handleMoreLessIngredient={this.handleMoreLessIngredient.bind(this)}
+      <>
+        <div className="container d-flex flex-md-row flex-column justify-content-center align-items-center">
+          <Burger ingredients={ingredients} />
+          <Control
+            handleMoreLessIngredient={this.handleMoreLessIngredient.bind(this)}
+            totalPrice={this.state.totalPrice}
+            handelToggleModel={this.handelToggleModel}
+            purchasable={this.state.purchasable}
+          />
+        </div>
+        <OrderModal
+          modalOpen={this.state.modalOpen}
+          ingredients={this.state.ingredients}
+          handelToggleModel={this.handelToggleModel}
           totalPrice={this.state.totalPrice}
-        />
-      </div>
+        ></OrderModal>
+      </>
     );
   }
 }

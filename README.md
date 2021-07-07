@@ -90,6 +90,13 @@ salad,chees,meat 20,40,90
 
 did mistake need to send this.state.totalPrice not this.totalPrice
 
+8.show order summery
+
+created order modal component and order summery
+
+if no addon added then order cannot proceed,
+there was no other challenge.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

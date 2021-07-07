@@ -2,7 +2,12 @@ import React from "react";
 
 import { Card, CardHeader, CardBody, CardFooter, Button } from "reactstrap";
 
-export default function Control({ handleMoreLessIngredient, totalPrice }) {
+export default function Control({
+  handleMoreLessIngredient,
+  totalPrice,
+  handelToggleModel,
+  purchasable,
+}) {
   const controls = ["Cheese", "Meat", "Salad"];
   return (
     <div>
@@ -34,6 +39,9 @@ export default function Control({ handleMoreLessIngredient, totalPrice }) {
         </CardBody>
 
         <CardFooter className="text-center">Price:{totalPrice} BDT</CardFooter>
+        <Button onClick={() => handelToggleModel()} disabled={!purchasable}>
+          Order
+        </Button>
       </Card>
     </div>
   );
