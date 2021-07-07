@@ -86,7 +86,7 @@ or array syntax =()=>{
 7. showing price on card
 
 base price 80 , total price in state
-salad,chees,meat 20,40,90
+salad,cheese,meat 20,40,90
 
 did mistake need to send this.state.totalPrice not this.totalPrice
 
@@ -96,6 +96,23 @@ created order modal component and order summery
 
 if no addon added then order cannot proceed,
 there was no other challenge.
+
+9.adding router
+
+npm i react-router-dom
+
+import BrowserRouter from rrd in app component and place main component inside BrowserRouter
+
+in main component inside div.container add the Router
+
+<Router exact path="/something" component={}>
+<Router exact path="/" component={}>
+
+if we place our main component under BrowserRouter then a props will be available inside all page
+
+we use this props to push our desire path when clicking on checkout button
+
+this.props.history.push('/checkout');
 
 # Getting Started with Create React App
 

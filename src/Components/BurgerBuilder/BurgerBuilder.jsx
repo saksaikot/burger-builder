@@ -41,6 +41,10 @@ export default class BurgerBuilder extends Component {
   handelToggleModel = () => {
     this.setState({ modalOpen: !this.state.modalOpen });
   };
+
+  handleCheckoutButton = () => {
+    this.props.history.push("/checkout");
+  };
   render() {
     const { ingredients } = this.state;
     return (
@@ -59,6 +63,7 @@ export default class BurgerBuilder extends Component {
           ingredients={this.state.ingredients}
           handelToggleModel={this.handelToggleModel}
           totalPrice={this.state.totalPrice}
+          handleCheckoutButton={this.handleCheckoutButton}
         ></OrderModal>
       </>
     );

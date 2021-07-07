@@ -8,6 +8,7 @@ export default function OrderModal({
   ingredients,
   handelToggleModel,
   totalPrice,
+  handleCheckoutButton,
 }) {
   return (
     <div>
@@ -19,7 +20,7 @@ export default function OrderModal({
           <Summery ingredients={ingredients}></Summery>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={() => handelToggleModel()} color="success">
+          <Button onClick={() => handleCheckoutButton()} color="success">
             Continue to checkout
           </Button>
           <Button onClick={() => handelToggleModel()} color="danger">
