@@ -24,13 +24,17 @@ export default function Control({
               </div>
               <Button
                 className="btn btn-danger btn-sm m-1"
-                onClick={() => handleMoreLessIngredient(control, -1)}
+                onClick={() =>
+                  handleMoreLessIngredient({ name: control, amount: -1 })
+                }
               >
                 less
               </Button>
               <Button
                 className="btn btn-success btn-sm m-1"
-                onClick={() => handleMoreLessIngredient(control, 1)}
+                onClick={() =>
+                  handleMoreLessIngredient({ name: control, amount: 1 })
+                }
               >
                 More
               </Button>

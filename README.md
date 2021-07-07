@@ -114,6 +114,96 @@ we use this props to push our desire path when clicking on checkout button
 
 this.props.history.push('/checkout');
 
+10. adding redux to our app
+
+npm i redux react-redux --save
+add store,reducer,actionCreators and actionTypes .js under redux folder
+
+create reducer
+
+### export const reducer=(state=IniState,action)=>{
+
+###
+
+### switch(action.type){
+
+###
+
+### default:
+
+### return state;
+
+### }
+
+###
+
+### }
+
+after we need to create actionTypes
+
+export const UPDATE_SOMETHING='UPDATE_SOMETHING'
+
+actionCreator
+
+import \* as actionType from "./actionTypes";
+
+methodName=(payload)=>{
+return {
+
+      type:ACTION_TYPE,
+      payload
+    }
+
+}
+
+export const updateIngredientAmount = (ingredientAmount) => {
+return {
+type: actionType.UPDATE_INGREDIENT_AMOUNT,
+payload: ingredientAmount,
+};
+};
+
+importing provider
+
+Provider from react-redux
+import store
+<Provider store={store}>
+
+<OtherElements/>
+
+</Provider>
+
+now we can use the redux store
+
+first import {connect},
+import actionCreators
+
+const mapStateToProps=state=>{
+return {property we needed from state}
+}
+
+had problem didnot copy old state always copy old state
+
+mapDichpatchToState=dispatch=>return{
+actionname:(actionName parameter)=>dispatch(actionCreators(actionName parameter));
+}
+
+finally connect
+export default connect(mapStateToProps,mapDispatchToProps)(ClassName)
+
+now make the logic
+
+reducer
+
+switch(action.type){
+case ACTION.TYPE:
+always create copy of original state
+
+default:
+return state;
+
+}
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
