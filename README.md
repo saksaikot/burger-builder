@@ -83,6 +83,13 @@ or array syntax =()=>{
 
 }
 
+7. showing price on card
+
+base price 80 , total price in state
+salad,chees,meat 20,40,90
+
+did mistake need to send this.state.totalPrice not this.totalPrice
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

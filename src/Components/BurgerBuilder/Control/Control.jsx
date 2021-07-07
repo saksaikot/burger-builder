@@ -2,7 +2,7 @@ import React from "react";
 
 import { Card, CardHeader, CardBody, CardFooter, Button } from "reactstrap";
 
-export default function Control({ handleMoreLessIngredient }) {
+export default function Control({ handleMoreLessIngredient, totalPrice }) {
   const controls = ["Cheese", "Meat", "Salad"];
   return (
     <div>
@@ -33,7 +33,7 @@ export default function Control({ handleMoreLessIngredient }) {
           ))}
         </CardBody>
 
-        <CardFooter className="text-center">Price: BDT</CardFooter>
+        <CardFooter className="text-center">Price:{totalPrice} BDT</CardFooter>
       </Card>
     </div>
   );
