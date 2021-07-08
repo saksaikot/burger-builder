@@ -251,6 +251,39 @@ added actionCreators updateCheckout> , actionType > UPDATE_CHECKOUT
 
 moved constant into separate file
 
+# 12 Saving order to database
+
+get firebase database url:
+sign in and goto console create new project
+from left top : build>realtime database
+get the api link under data tab
+from rule tab
+
+```json
+{
+  "rules": {
+    ".read": "true", // 2021-8-7
+    ".write": "true" // 2021-8-7
+  }
+}
+```
+
+do this .read to true, .write to true, it make auto delete off, means never delete
+then added the needed state variable from redux
+
+then
+npm i axios
+and import it
+
+then use
+
+```js
+axios
+  .post(url, data)
+  .then((response) => {})
+  .catch((error) => {});
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
