@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.primary-accent {
+  background-color: #d70f64;
+  color: white;
+  outline: none;
+  border-color: #c10050;
+}
+.btn.primary-accent:hover {
+  background-color: #c10050;
+  border-color: #c10050;
+}
+
+.active {
+  text-shadow: 1px 1px grey;
+  color: wheat;
+}

@@ -195,14 +195,61 @@ now make the logic
 
 reducer
 
-switch(action.type){
-case ACTION.TYPE:
-always create copy of original state
+```javascript
+switch (action.type) {
+  case ACTION.TYPE:
+    const newState = [...state];
 
-default:
-return state;
-
+  default:
+    return state;
 }
+```
+
+# 11. creating checkout option
+
+added checkout--form css
+
+```css
+.checkout--border {
+  border: 1px solid grey;
+  box-shadow: 1px 1px #888;
+  border-radius: 5px;
+  padding: 1.3rem;
+}
+```
+
+created Input component with textarea and select option
+structure from bootstrap
+required, name
+optional type, placeholder, value, label
+
+default: type:text,value:'',placeholder:Your Name here, label:Name
+
+move state to redux,
+connected redux.
+implemented goback
+
+```js
+this.props.history.goBack("/");
+```
+
+since i used separate input component
+input needed defaultValue instead of value
+
+```js
+defaultValue = { value };
+```
+
+used onChange on form
+thats why need to use
+
+```js
+e.preventDefault();
+```
+
+added actionCreators updateCheckout> , actionType > UPDATE_CHECKOUT
+
+moved constant into separate file
 
 # Getting Started with Create React App
 

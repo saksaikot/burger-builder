@@ -3,8 +3,6 @@
 @import "./ingredient.css";
 @import "./burger.css";
 @import "./control.css";
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@import "./checkout.css";
+
+@import "./helper.css";

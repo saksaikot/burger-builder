@@ -43,7 +43,11 @@ export default function Control({
         </CardBody>
 
         <CardFooter className="text-center">Price:{totalPrice} BDT</CardFooter>
-        <Button onClick={() => handelToggleModel()} disabled={!purchasable}>
+        <Button
+          className="primary-accent"
+          onClick={() => handelToggleModel()}
+          disabled={!purchasable}
+        >
           Order
         </Button>
       </Card>

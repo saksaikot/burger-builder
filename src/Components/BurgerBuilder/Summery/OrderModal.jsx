@@ -20,7 +20,11 @@ export default function OrderModal({
           <Summery ingredients={ingredients}></Summery>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={() => handleCheckoutButton()} color="success">
+          <Button
+            className="primary-accent"
+            onClick={() => handleCheckoutButton()}
+            color="success"
+          >
             Continue to checkout
           </Button>
           <Button onClick={() => handelToggleModel()} color="danger">

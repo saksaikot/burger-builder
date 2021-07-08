@@ -1,6 +1,5 @@
 .navbar {
   margin-bottom: 20px;
-  background-color: #d70f64;
   height: 70px;
 }
 
@@ -23,9 +22,4 @@
 
 .navbar__logo {
   height: 80px;
-}
-
-.active {
-  text-shadow: 1px 1px grey;
-  color: wheat;
 }

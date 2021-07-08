@@ -6,3 +6,8 @@ export const updateIngredientAmount = (ingredientAmount) => {
     payload: ingredientAmount,
   };
 };
+
+export const updateCheckoutForm = (checkout) => ({
+  type: actionType.UPDATE_CHECKOUT_FORM,
+  payload: checkout,
+});
