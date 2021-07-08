@@ -11,3 +11,7 @@ export const updateCheckoutForm = (checkout) => ({
   type: actionType.UPDATE_CHECKOUT_FORM,
   payload: checkout,
 });
+
+export const resetState = () => ({
+  type: actionType.RESET_STATE,
+});

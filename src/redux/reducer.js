@@ -47,6 +47,9 @@ export const reducer = (state = CONSTANTS.INITIAL_STATE, action) => {
       const checkout = action.payload;
       return { ...state, checkout };
 
+    case actionTypes.RESET_STATE:
+      return { ...state, ...CONSTANTS.INITIAL_STATE };
+
     default:
       return state;
   }

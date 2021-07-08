@@ -284,6 +284,22 @@ axios
   .catch((error) => {});
 ```
 
+# 13. Improving checkout component
+
+added spinner or loader from https://projects.lukehaas.me/css-loaders/
+created Loader component from it
+
+added modal in checkout to display message after submitting order
+
+if order success then reset the state of redux
+
+created new action in reducer to reset state
+modal on click used this
+
+```js
+this.props.history.goBack("/");
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
