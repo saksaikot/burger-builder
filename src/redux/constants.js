@@ -23,7 +23,7 @@ export const INITIAL_BURGER_BUILDER_STATE = {
 };
 
 const INITIAL_ORDER_STATE = {
-  order: [],
+  orders: null,
   orderLoading: true,
   orderLoadFailed: false,
 };

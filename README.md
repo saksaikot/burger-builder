@@ -355,6 +355,23 @@ ORDER_LOAD_FAILED:
 //set orderLoadFailed to  true
 ```
 
+# 15. Completing Orders Component
+
+fix Order to Orders component
+
+added border and border--no-box-shadow helper class
+
+create Order component under Order/Order folder
+
+optimize order loading:
+set orders=null,
+so only request to server if order is null
+
+load orders on checkout page
+
+set order state on submit order, so order state has updated data,
+of course it assume only one user and only one instance is running
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

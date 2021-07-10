@@ -2,7 +2,12 @@ import axios from "axios";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, ModalBody } from "reactstrap";
-import { updateCheckoutForm, resetState } from "../../../redux/actionCreators";
+import {
+  updateCheckoutForm,
+  resetState,
+  loadOrders,
+  fetchOrders,
+} from "../../../redux/actionCreators";
 import { PAYMENT_OPTION } from "../../../redux/constants";
 import Input from "../../Input/Input";
 import Loader from "../../Loader/Loader";
@@ -12,16 +17,20 @@ const mapStateToProps = ({
   totalPrice,
   ingredients,
   purchasable,
+  orders,
 }) => ({
   checkout,
   totalPrice,
   ingredients,
   purchasable,
+  orders,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   updateCheckoutForm: (checkout) => dispatch(updateCheckoutForm(checkout)),
   resetState: (checkout) => dispatch(resetState()),
+  loadOrders: (orders) => dispatch(loadOrders(orders)),
+  fetchOrders: () => dispatch(fetchOrders()),
 });
 
 class Checkout extends Component {
@@ -30,6 +39,10 @@ class Checkout extends Component {
     submitMessage: "",
     modalIsOpen: false,
   };
+
+  componentDidMount() {
+    if (this.props.orders === null) this.props.loadOrders();
+  }
   handleOnChange = (event) => {
     const checkout = { ...this.props.checkout };
     checkout[event.target.name] = event.target.value;
@@ -53,6 +66,7 @@ class Checkout extends Component {
     };
 
     this.setState({ submitting: true });
+
     axios
       .post(
         "https://burger-builder-d3e66-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json",
@@ -61,11 +75,15 @@ class Checkout extends Component {
       .then((response) => {
         if (response.status === 200) {
           console.log(response);
+          order.id = response.data.name;
+          console.log(order, this.props.orders);
           this.setState({
             submitMessage: "Order placed successfully",
             submitting: false,
             modalIsOpen: true,
+            // orders: { ...this.props.orders, order },
           });
+          this.props.loadOrders({ ...this.props.orders, order });
           this.props.resetState();
         } else {
           this.setState({
@@ -97,8 +115,8 @@ class Checkout extends Component {
     const loading = <Loader />;
     const form = (
       <>
-        <h4 className="checkout--border">Payment : {totalPrice} BDT</h4>
-        <div className="checkout--border">
+        <h4 className="border">Payment : {totalPrice} BDT</h4>
+        <div className="border">
           <form onChange={this.handleOnChange}>
             <Input name="name" value={name} />
             <Input name="address" type="textarea" value={address} />
