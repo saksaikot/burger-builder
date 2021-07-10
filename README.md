@@ -300,6 +300,61 @@ modal on click used this
 this.props.history.goBack("/");
 ```
 
+# 14. Fetching the orders
+
+applying redux-thunk to redux: thunk is needed to perform asynchronous dispatch
+
+```js
+import { createStore, applyMiddleware } from "redux"; // import component from redux
+import thunk from 'react-thunk';
+// import reducer
+...
+// create store
+store=createStore(reducer,applyMiddleware('thunk'))
+
+```
+
+add actionType LOAD_ORDERS, ORDER_LOAD_FAILED
+
+create actionCreator
+
+loadOrders, orderLoadFailed
+
+fetchOrders// asynchronous fetch call
+
+note thunk call
+
+```js
+fetchSomething = () => (dispatch) => {
+  dispatch(call_action_reducer);
+};
+```
+
+add new state value
+
+```js
+  order: [],
+  orderLoading: true,
+  orderLoadFailed: false,
+```
+
+reducer:
+
+```js
+LOAD_ORDERS:
+
+//used for(const key of data)
+
+// set key as id,
+
+// checked if payload is null
+// set orderLoading to false
+
+ORDER_LOAD_FAILED:
+
+//set orderLoadFailed to  true
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

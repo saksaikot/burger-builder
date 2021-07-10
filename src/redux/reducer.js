@@ -48,8 +48,19 @@ export const reducer = (state = CONSTANTS.INITIAL_STATE, action) => {
       return { ...state, checkout };
 
     case actionTypes.RESET_STATE:
-      return { ...state, ...CONSTANTS.INITIAL_STATE };
+      return { ...state, ...CONSTANTS.INITIAL_BURGER_BUILDER_STATE };
 
+    case actionTypes.LOAD_ORDERS:
+      const { payload } = action;
+      console.log(payload);
+      const orders = [];
+      if (payload !== null)
+        for (let key in payload) {
+          orders.push({ ...payload[key], id: key });
+        }
+      return { ...state, orders, orderLoading: false };
+    case actionTypes.ORDER_LOAD_FAILED:
+      return { ...state, orderLoadFailed: true };
     default:
       return state;
   }

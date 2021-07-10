@@ -6,7 +6,7 @@ export const INGREDIENTS_PRICE = {
 };
 export const PAYMENT_OPTION = ["Cash on delivery", "Bkash"];
 
-export const INITIAL_STATE = {
+export const INITIAL_BURGER_BUILDER_STATE = {
   ingredients: [
     { name: "Salad", amount: 0 },
     { name: "Meat", amount: 0 },
@@ -20,4 +20,15 @@ export const INITIAL_STATE = {
     phone: "",
     payment: PAYMENT_OPTION[0],
   },
+};
+
+const INITIAL_ORDER_STATE = {
+  order: [],
+  orderLoading: true,
+  orderLoadFailed: false,
+};
+
+export const INITIAL_STATE = {
+  ...INITIAL_BURGER_BUILDER_STATE,
+  ...INITIAL_ORDER_STATE,
 };
