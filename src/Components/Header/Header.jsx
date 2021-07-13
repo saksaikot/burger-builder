@@ -24,6 +24,14 @@ export default function Header() {
               Order
             </NavLink>
           </NavItem>
+          <NavItem>
+            <NavLink exact to="/register" className="navbar__nav-link">
+              Register
+            </NavLink>
+            <NavLink exact to="/login" className="navbar__nav-link">
+              Login
+            </NavLink>
+          </NavItem>
         </Nav>
       </div>
     </Navbar>

@@ -115,8 +115,8 @@ class Checkout extends Component {
     const loading = <Loader />;
     const form = (
       <>
-        <h4 className="border">Payment : {totalPrice} BDT</h4>
-        <div className="border">
+        <h4 className="add-border">Payment : {totalPrice} BDT</h4>
+        <div className="add-border">
           <form onChange={this.handleOnChange}>
             <Input name="name" value={name} />
             <Input name="address" type="textarea" value={address} />

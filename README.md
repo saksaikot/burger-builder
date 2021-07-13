@@ -372,6 +372,39 @@ load orders on checkout page
 set order state on submit order, so order state has updated data,
 of course it assume only one user and only one instance is running
 
+# ** 24. Adding authentication in Burger Builder**
+
+# 1. Creating the auth form using Formik
+
+a. install formik
+npm i formic
+
+b. add formik to auth.jsx file
+import formik
+
+add formik component and follow the formik structure
+
+```js
+
+<Formik initialValues={} onSubmit={(values)=>console.log(values)}>
+({values,handleChange,handleSubmit})=>(
+  <form onChange={handleChange} onSubmit={handleSubmit}>
+
+  <Input name='input_name' value={values.input_name} />
+  </form>
+)
+</Formik>
+```
+
+c. add css className add-border to form,
+d. add button with type='submit'
+
+e. fixed helper css border to add-border, to remove conflict with bootstrap class border
+and changed border to add-border where previously border class is used
+
+f. added register and login route to main.jsx
+g.added link to header.jsx
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
