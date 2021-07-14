@@ -1,29 +1,29 @@
-23.Burger Builder Project
-1.project setup
+# **23.Burger Builder Project**
 
-a. npm init react-app appName
+# 1.project setup
 
-b.to clean the react project only index.html file is needed in public folder.
-favicon.ico can be keep there for web icon
+- npm init react-app appName
 
-in src folder app.js and index.js need to be kept
+  - To clean the react project only index.html file is needed in public folder.
+  - favicon.ico can be keep there for web icon.
+  - In src folder app.js and index.js need to be kept.
+  - Service worker is for mobile and offline mode.
 
-service worker is for mobile and offline mode
-
-c. install dependency for this project
-npm i bootstrap reactstrap react-popper axios --save
-
-d. import bootstrap in index.js
-import "bootstrap/dist/css/bootstrap.min.css";
-e. created MainComponent folder, inside main.js and BurgerBuilder.jsx under BurgerBuilder folder. it is a class component, will return a text burger builder. then under Header folder there is Header.jsx it will have same simple text like header, it is a functional component.
-
-then import Header and BurgerBuilder in Main.jsx
-
-then finally import Main.jsx into app.js
+- Install dependency for this project
+  - npm i bootstrap reactstrap react-popper axios --save
+  - import bootstrap in index.js
+  - import "bootstrap/dist/css/bootstrap.min.css";
+- Add folder and files
+  - Created MainComponent folder, inside `main.js` and `BurgerBuilder.jsx` under BurgerBuilder folder.
+  - It is a class component, will return a text burger builder.
+  - under Header folder there is `Header.jsx` it will have same simple text like header, it is a functional component.
+  - import Header and BurgerBuilder in Main.jsx
+  - import Main.jsx into app.js
 
 now run and test the outcome
 
-2.Creating navigation bar,
+# 2.Creating navigation bar
+
 will use some components from reactstrap
 
 like Navbar
@@ -31,11 +31,13 @@ NavbarBrand,Nav,NavItem,NavLink
 
 structure
 
-Navbar
-NavbarBrand
-Nav
-NavItem
-NavLink
+```js
+Navbar;
+NavbarBrand;
+Nav;
+NavItem;
+NavLink;
+```
 
 link has href attribute
 
@@ -46,21 +48,23 @@ main will include all other css
 the naming convention of the css i am using is bem
 Block element and modifier
 
-3. creating ingredient component
-   created burger.jsx fc under burger folder and ingredient.jsx fc under ingredient folder
-   added css ingredient center and 5ps margin and img 80% width
+# 3. creating ingredient component
+
+created burger.jsx fc under burger folder and ingredient.jsx fc under ingredient folder
+added css ingredient center and 5ps margin and img 80% width
 
 ingredient have a prop named ingredientName
 
-4. Show ingredients according to state
-   used
-   [...Array(5).keys()] will create 5 array
+# 4. Show ingredients according to state
 
-load elements from state of burgerbuilder
+used
+[...Array(5).keys()] will create 5 array
+
+load elements from state of burgerBuilder
 
 added css to burger and made the y scrollbar hidden
 
-5.Controls component
+# 5.Controls component
 
 created controls component and added some class to it like
 d-flex flex-row / flex-column justify-content-center align-items center
@@ -69,35 +73,40 @@ in control there we created an array of three with our ingredients , give more a
 
 now the control is quite big but later i need to make it small
 
-6. add and remove ingredients
-   myArray.find(x => x.id === '45'); // find object property in array
+# 6. add and remove ingredients
 
-myArray.findIndex(x => x.id === '45'); // find index of object property
+```js
+myArray.find((x) => x.id === "45"); // find object property in array
+
+myArray.findIndex((x) => x.id === "45"); // find index of object property
+```
 
 again had problem with bind
 always bind to this
 
+```js
 .bind(this)
 
 or array syntax =()=>{
 
 }
+```
 
-7. showing price on card
+# 7. showing price on card
 
 base price 80 , total price in state
 salad,cheese,meat 20,40,90
 
 did mistake need to send this.state.totalPrice not this.totalPrice
 
-8.show order summery
+# 8.show order summery
 
 created order modal component and order summery
 
 if no addon added then order cannot proceed,
 there was no other challenge.
 
-9.adding router
+# 9.adding router
 
 npm i react-router-dom
 
@@ -105,46 +114,47 @@ import BrowserRouter from rrd in app component and place main component inside B
 
 in main component inside div.container add the Router
 
+```js
 <Router exact path="/something" component={}>
 <Router exact path="/" component={}>
+```
 
 if we place our main component under BrowserRouter then a props will be available inside all page
 
 we use this props to push our desire path when clicking on checkout button
 
-this.props.history.push('/checkout');
+```js
+this.props.history.push("/checkout");
+```
 
-10. adding redux to our app
+# 10. adding redux to our app
 
+```cmd
 npm i redux react-redux --save
+```
+
 add store,reducer,actionCreators and actionTypes .js under redux folder
 
 create reducer
 
-### export const reducer=(state=IniState,action)=>{
-
-###
-
-### switch(action.type){
-
-###
-
-### default:
-
-### return state;
-
-### }
-
-###
-
-### }
+```js
+export const reducer = (state = IniState, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+```
 
 after we need to create actionTypes
 
-export const UPDATE_SOMETHING='UPDATE_SOMETHING'
+```js
+export const UPDATE_SOMETHING = "UPDATE_SOMETHING";
+```
 
 actionCreator
 
+```js
 import \* as actionType from "./actionTypes";
 
 methodName=(payload)=>{
@@ -155,41 +165,52 @@ return {
     }
 
 }
+```
 
+```js
 export const updateIngredientAmount = (ingredientAmount) => {
-return {
-type: actionType.UPDATE_INGREDIENT_AMOUNT,
-payload: ingredientAmount,
+  return {
+    type: actionType.UPDATE_INGREDIENT_AMOUNT,
+    payload: ingredientAmount,
+  };
 };
-};
+```
 
 importing provider
 
 Provider from react-redux
 import store
+
+```js
 <Provider store={store}>
-
-<OtherElements/>
-
+  <OtherElements />
 </Provider>
+```
 
 now we can use the redux store
 
+```js
 first import {connect},
 import actionCreators
 
 const mapStateToProps=state=>{
 return {property we needed from state}
 }
+```
 
-had problem didnot copy old state always copy old state
+had problem did not copy old state always copy old state
 
+```js
 mapDichpatchToState=dispatch=>return{
 actionname:(actionName parameter)=>dispatch(actionCreators(actionName parameter));
 }
+```
 
 finally connect
-export default connect(mapStateToProps,mapDispatchToProps)(ClassName)
+
+```js
+export default connect(mapStateToProps, mapDispatchToProps)(ClassName);
+```
 
 now make the logic
 
@@ -404,6 +425,8 @@ and changed border to add-border where previously border class is used
 
 f. added register and login route to main.jsx
 g.added link to header.jsx
+
+# 2.Adding validation
 
 # Getting Started with Create React App
 
