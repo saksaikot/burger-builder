@@ -448,6 +448,43 @@ const AuthSchema = Yup.object().shape({
 
 ```
 
+# 3. Adding register and signUp - button and link
+
+- Input element label and placeholder will be replaced _ with space if name have _
+- yup validation: if isLogin true then
+- ```js
+
+  isLogin: Yup.boolean(),
+  .when("isLogin", {
+      is: false,
+      then: Yup.string().required("Password confirmation is required"),
+    }
+
+  ```
+
+- inside render of Auth.jsx
+- ```js
+  const isLogin = this.props.match.path === "/login" ? true : false;
+  if (!isLogin) INITIAL_VALUES.isLogin = false;
+  ```
+- added conditional button name
+- added conditional link to register and login
+- ```js
+  {
+    isLogin ? (
+      <div>
+        Don't have account register <NavLink to="/register">here</NavLink>
+      </div>
+    ) : (
+      <div>
+        Already have account login <NavLink to="/login">here</NavLink>
+      </div>
+    );
+  }
+  ```
+
+- Moved isLogin to state
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -518,3 +555,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+```
+
+```
+
+```
+
+```

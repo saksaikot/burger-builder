@@ -21,8 +21,8 @@ export default function Input({
   }
   const InputType = type === "text" ? "input" : type;
   // console.log(name);
-  label = label || capitalize(name);
-  placeholder = placeholder || `Your ${name} here`;
+  label = label || capitalize(name.replace(/_/g, " "));
+  placeholder = placeholder || `Your ${label} here`;
   return (
     <div>
       <div className="form-group">
@@ -41,6 +41,7 @@ export default function Input({
           {options}
         </InputType>
       </div>
+      {/* {console.log("error", error)} */}
       {error ? (
         <small id={name + "Help"} class="text-danger">
           {error}
