@@ -7,6 +7,8 @@ export default function Input({
   placeholder,
   value,
   options,
+  error,
+  touched,
 }) {
   if (options) {
     type = "select";
@@ -22,27 +24,35 @@ export default function Input({
   label = label || capitalize(name);
   placeholder = placeholder || `Your ${name} here`;
   return (
-    <div className="form-group">
-      <label className="my-2" htmlFor={name}>
-        {label}
-      </label>
-      <InputType
-        type={type}
-        className="form-control"
-        name={name}
-        id={name}
-        aria-describedby={name}
-        placeholder={placeholder}
-        defaultValue={value}
-      >
-        {options}
-      </InputType>
+    <div>
+      <div className="form-group">
+        <label className="my-2" htmlFor={name}>
+          {label}
+        </label>
+        <InputType
+          type={type}
+          className="form-control"
+          name={name}
+          id={name}
+          aria-describedby={name}
+          placeholder={placeholder}
+          defaultValue={value}
+        >
+          {options}
+        </InputType>
+      </div>
+      {error ? (
+        <small id={name + "Help"} class="text-danger">
+          {error}
+        </small>
+      ) : null}
     </div>
   );
 }
 Input.defaultProps = {
   type: "text",
   value: "",
+  error: null,
 };
 
 function capitalize(str) {

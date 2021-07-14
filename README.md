@@ -428,6 +428,26 @@ g.added link to header.jsx
 
 # 2.Adding validation
 
+```js
+import * as Yup from "yup";
+
+const AuthSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  password: Yup.string()
+    .min(6, "At least 6 character")
+    .max(20, "Maximum 20 character")
+    .required("Password is required"),
+  password_confirmed: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Password confirmation is required"),
+});
+```
+
+```js
+       <Formik validationSchema={AuthSchema}>   ({errors})=>(<input name='email'/> {errors.email} )
+
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
