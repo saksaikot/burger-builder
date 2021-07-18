@@ -485,6 +485,54 @@ const AuthSchema = Yup.object().shape({
 
 - Moved isLogin to state
 
+# 4.Authentication through firebase
+
+- actionTypes added
+
+```js
+export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const AUTH_FAILED = "AUTH_FAILED";
+export const AUTH_LOADING = "AUTH_LOADING";
+export const AUTH_LOGOUT = "AUTH_LOGOUT";
+```
+
+- authActionCreators , implemented auth function, need to use asynchronous dispatch, auth take object with properties of email,password and isLogin, post the auth data to firebase endpoint based on isLogin
+
+```js
+export const auth =
+  ({ email, password, isLogin }) =>
+  (dispatch) => {
+    const authData = { email, password, returnSecureToken: true };
+
+    const apiAction = isLogin ? "signInWithPassword" : "signUp";
+
+    const apiEndPoint = `https://identitytoolkit.googleapis.com/v1/accounts:${apiAction}?key=${API_KEY}`;
+
+    axios.post(apiEndPoint, authData).then((response) => console.log(response));
+  };
+```
+
+````
+
+- firebase register success data, data will have these properties
+- ```js
+  {
+  email :'email address of post data',
+  expiresIn :'expires in seconds',
+  idToken :' token id, for any futures request before expire time we can use this token',
+  kind :'type of operation done',
+  localId :'user unique id',
+  refreshToken :'token to get a new idToken',
+  }
+
+````
+
+}
+
+```
+
+- Auth.jsx component added redux, added auth function from authActionCreators, added onSubmit
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -555,6 +603,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+```
 
 ```
 

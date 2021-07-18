@@ -4,6 +4,12 @@ import Input from "../Input/Input";
 
 import * as Yup from "yup";
 import { NavLink } from "react-router-dom";
+import { auth } from "../../redux/authActionCreators";
+import { connect } from "react-redux";
+
+const mapDispatchToProps = (dispatch) => ({
+  auth: (user) => dispatch(auth(user)),
+});
 
 const INITIAL_VALUES = {
   email: "",
@@ -27,12 +33,19 @@ const AuthSchema = Yup.object().shape({
       then: Yup.string().required("Password confirmation is required"),
     }),
 });
-export default class Auth extends Component {
+class Auth extends Component {
   state = { isLogin: true };
   componentDidMount() {
     const isLogin = this.props.match.path === "/login" ? true : false;
     this.setState({ isLogin });
   }
+
+  handleSubmit = (values) => {
+    // console.log(values);
+
+    this.props.auth({ ...values, isLogin: this.state.isLogin });
+  };
+
   render() {
     // console.log(this.props);
     const { isLogin } = this.state;
@@ -41,7 +54,7 @@ export default class Auth extends Component {
       <div>
         <Formik
           initialValues={INITIAL_VALUES}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={this.handleSubmit}
           validationSchema={AuthSchema}
         >
           {({ values, handleChange, handleSubmit, errors, touched }) => (
@@ -92,3 +105,5 @@ export default class Auth extends Component {
     );
   }
 }
+
+export default connect(null, mapDispatchToProps)(Auth);
