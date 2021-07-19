@@ -31,47 +31,45 @@ NavbarBrand,Nav,NavItem,NavLink
 
 structure
 
-```js
+```
 Navbar;
-NavbarBrand;
-Nav;
-NavItem;
-NavLink;
+  NavbarBrand;
+  Nav;
+    NavItem;
+      NavLink;
+    NavItem;
+      NavLink;
 ```
 
-link has href attribute
+- link has href attribute
 
-also link css
+- also link css
 
-main and header css
-main will include all other css
-the naming convention of the css i am using is bem
-Block element and modifier
+- main and header css
+- main will include all other css
+- The naming convention of the css I am using is BEM, Modifier Block\_\_Element--Modifier
 
 # 3. creating ingredient component
 
-created burger.jsx fc under burger folder and ingredient.jsx fc under ingredient folder
-added css ingredient center and 5ps margin and img 80% width
+- Created `Burger.jsx` functional component under `Burger` folder and `Ingredient.jsx` functional component under ingredient folder
 
-ingredient have a prop named ingredientName
+- added css ingredient center and 5ps margin and img 80% width
+
+- ingredient have a prop named `ingredientName`
 
 # 4. Show ingredients according to state
 
-used
-[...Array(5).keys()] will create 5 array
+- Used `[...Array(5).keys()]` will create 5 array
 
-load elements from state of burgerBuilder
+- Load elements from state of burgerBuilder
 
-added css to burger and made the y scrollbar hidden
+- Added css to burger and made the y scrollbar hidden
 
 # 5.Controls component
 
-created controls component and added some class to it like
-d-flex flex-row / flex-column justify-content-center align-items center
+- Created controls component and added some class to it like d-flex flex-row / flex-column justify-content-center align-items center
 
-in control there we created an array of three with our ingredients , give more and less button to each item
-
-now the control is quite big but later i need to make it small
+- In control there we created an array of three with our ingredients, give more and less button to each item now the control is quite big but later i need to make it small
 
 # 6. add and remove ingredients
 
@@ -87,55 +85,52 @@ always bind to this
 ```js
 .bind(this)
 
-or array syntax =()=>{
+or arrow syntax =()=>{
 
 }
 ```
 
-# 7. showing price on card
+# 7. Showing price on card
 
-base price 80 , total price in state
-salad,cheese,meat 20,40,90
+- Base price 80
+- Salad,cheese,meat 20,40,90
+- Total price in state,
 
-did mistake need to send this.state.totalPrice not this.totalPrice
+**Did mistake need to send this.state.totalPrice not this.totalPrice**
 
-# 8.show order summery
+# 8. Show order summery
 
-created order modal component and order summery
+- Created order modal component and order summery
 
-if no addon added then order cannot proceed,
-there was no other challenge.
+- If no addon added then order cannot proceed,
+  there was no other challenge.
 
-# 9.adding router
+# 9. Adding router
 
-npm i react-router-dom
+- `npm i react-router-dom`
 
-import BrowserRouter from rrd in app component and place main component inside BrowserRouter
+- import BrowserRouter from rrd in app component and place main component inside BrowserRouter
 
-in main component inside div.container add the Router
+- In main component inside div.container add the Router
 
 ```js
 <Router exact path="/something" component={}>
 <Router exact path="/" component={}>
 ```
 
-if we place our main component under BrowserRouter then a props will be available inside all page
-
-we use this props to push our desire path when clicking on checkout button
+- If we place our main component under BrowserRouter then a props will be available inside all pages,we use this props to push our desire path when clicking on checkout button
 
 ```js
-this.props.history.push("/checkout");
+this.props.history.push("/checkout"); // to visit this path
 ```
 
-# 10. adding redux to our app
+# 10. Adding redux to our app
 
-```cmd
-npm i redux react-redux --save
-```
+- install redux react-redux `npm i redux react-redux --save`
 
-add store,reducer,actionCreators and actionTypes .js under redux folder
+- add store,reducer,actionCreators and actionTypes .js under redux folder
 
-create reducer
+- Create reducer
 
 ```js
 export const reducer = (state = IniState, action) => {
@@ -146,13 +141,13 @@ export const reducer = (state = IniState, action) => {
 };
 ```
 
-after we need to create actionTypes
+- After we need to create actionTypes
 
 ```js
 export const UPDATE_SOMETHING = "UPDATE_SOMETHING";
 ```
 
-actionCreator
+- actionCreator
 
 ```js
 import \* as actionType from "./actionTypes";
@@ -176,18 +171,19 @@ export const updateIngredientAmount = (ingredientAmount) => {
 };
 ```
 
-importing provider
+- Importing provider
 
-Provider from react-redux
-import store
+- Provider from react-redux
 
-```js
-<Provider store={store}>
-  <OtherElements />
-</Provider>
-```
+  - import store
 
-now we can use the redux store
+    ```js
+    <Provider store={store}>
+      <OtherElements />
+    </Provider>
+    ```
+
+- Now we can use the redux store
 
 ```js
 first import {connect},
@@ -198,23 +194,21 @@ return {property we needed from state}
 }
 ```
 
-had problem did not copy old state always copy old state
+**had problem did not copy old state always copy old state**
 
 ```js
-mapDichpatchToState=dispatch=>return{
-actionname:(actionName parameter)=>dispatch(actionCreators(actionName parameter));
-}
+mapDispatchToState=dispatch=>({
+actionName:(actionName parameter)=>dispatch(actionCreators(actionName parameter));
+})
 ```
 
-finally connect
+- Finally connect
 
 ```js
 export default connect(mapStateToProps, mapDispatchToProps)(ClassName);
 ```
 
-now make the logic
-
-reducer
+- Now make the logic, reducer
 
 ```javascript
 switch (action.type) {
@@ -226,7 +220,7 @@ switch (action.type) {
 }
 ```
 
-# 11. creating checkout option
+# 11. Creating checkout option
 
 added checkout--form css
 
@@ -239,221 +233,196 @@ added checkout--form css
 }
 ```
 
-created Input component with textarea and select option
-structure from bootstrap
-required, name
-optional type, placeholder, value, label
+- Created Input component with textarea and select option, structure from bootstrap
+- required, name
+- optional type, placeholder, value, label
 
-default: type:text,value:'',placeholder:Your Name here, label:Name
+- default: type:text,value:'',placeholder:Your Name here, label:Name
 
-move state to redux,
-connected redux.
-implemented goback
+- move state to redux,
+- connected redux.
+- implemented goback
 
 ```js
 this.props.history.goBack("/");
 ```
 
-since i used separate input component
-input needed defaultValue instead of value
+- **Since i used separate input component, input needed defaultValue instead of value**
 
-```js
-defaultValue = { value };
-```
+  ```js
+  defaultValue = { value };
+  ```
 
-used onChange on form
-thats why need to use
+- Used onChange on form,thats why need to use
 
-```js
-e.preventDefault();
-```
+  ```js
+  e.preventDefault();
+  ```
 
-added actionCreators updateCheckout> , actionType > UPDATE_CHECKOUT
+- Added actionCreators updateCheckout> , actionType > UPDATE_CHECKOUT
 
-moved constant into separate file
+- Moved constants into separate file
 
 # 12 Saving order to database
 
-get firebase database url:
-sign in and goto console create new project
-from left top : build>realtime database
-get the api link under data tab
-from rule tab
+- Get firebase database url: will look like this `https://burger-builder-**.asia-southeast1.firebasedatabase.app/orders.json`
+  - sign in and goto console create new project
+  - from left top : build>realtime database
+  - get the api link under data tab
+  - **must add .json after the url to get a json response**
+- Edit rules from rule tab
 
-```json
-{
-  "rules": {
-    ".read": "true", // 2021-8-7
-    ".write": "true" // 2021-8-7
+  ```json
+  {
+    "rules": {
+      ".read": "true", // 2021-8-7
+      ".write": "true" // 2021-8-7
+    }
   }
-}
-```
+  ```
 
-do this .read to true, .write to true, it make auto delete off, means never delete
-then added the needed state variable from redux
-
-then
-npm i axios
-and import it
-
-then use
-
-```js
-axios
-  .post(url, data)
-  .then((response) => {})
-  .catch((error) => {});
-```
+- Do this .read to true, .write to true, it make auto delete off, means never delete
+- Aadded the needed state variable from redux
+- install axios `npm i axios`
+- import it
+  ```js
+  axios
+    .post(url, data)
+    .then((response) => {})
+    .catch((error) => {});
+  ```
 
 # 13. Improving checkout component
 
-added spinner or loader from https://projects.lukehaas.me/css-loaders/
-created Loader component from it
-
-added modal in checkout to display message after submitting order
-
-if order success then reset the state of redux
-
-created new action in reducer to reset state
-modal on click used this
-
-```js
-this.props.history.goBack("/");
-```
+- Added spinner or loader from https://projects.lukehaas.me/css-loaders/
+- Created Loader component from it.
+- Added modal in checkout to display message after submitting order
+- If order success then reset the state of redux
+- Created new action in reducer to reset state
+- modal on click used this
+  ```js
+  this.props.history.goBack("/");
+  ```
 
 # 14. Fetching the orders
 
-applying redux-thunk to redux: thunk is needed to perform asynchronous dispatch
+- Applying redux-thunk to redux: thunk is needed to perform asynchronous dispatch
 
-```js
-import { createStore, applyMiddleware } from "redux"; // import component from redux
-import thunk from 'react-thunk';
-// import reducer
-...
-// create store
-store=createStore(reducer,applyMiddleware('thunk'))
+  ```js
+  import { createStore, applyMiddleware } from "redux"; // import component from redux
+  import thunk from 'react-thunk';
+  // import reducer
+  ...
+  // create store
+  store=createStore(reducer,applyMiddleware('thunk'))
 
-```
+  ```
 
-add actionType LOAD_ORDERS, ORDER_LOAD_FAILED
+- add actionType `LOAD_ORDERS`, `ORDER_LOAD_FAILED`
 
-create actionCreator
+- create actionCreator `loadOrders`, `orderLoadFailed`,`fetchOrders` asynchronous fetch call
 
-loadOrders, orderLoadFailed
+- thunk asynchronous dispatch
 
-fetchOrders// asynchronous fetch call
+  ```js
+  fetchSomething = () => (dispatch) => {
+    dispatch(call_action_reducer);
+  };
+  ```
 
-note thunk call
+- add new state value
 
-```js
-fetchSomething = () => (dispatch) => {
-  dispatch(call_action_reducer);
-};
-```
+  ```js
+    order: [],
+    orderLoading: true,
+    orderLoadFailed: false,
+  ```
 
-add new state value
+- reducer:
 
-```js
-  order: [],
-  orderLoading: true,
-  orderLoadFailed: false,
-```
+  ```js
+  LOAD_ORDERS:
 
-reducer:
+  //used for(const key of data)
 
-```js
-LOAD_ORDERS:
+  // set key as id,
 
-//used for(const key of data)
+  // checked if payload is null
+  // set orderLoading to false
 
-// set key as id,
+  ORDER_LOAD_FAILED:
 
-// checked if payload is null
-// set orderLoading to false
-
-ORDER_LOAD_FAILED:
-
-//set orderLoadFailed to  true
-```
+  //set orderLoadFailed to  true
+  ```
 
 # 15. Completing Orders Component
 
-fix Order to Orders component
+- Fixed typo, Order to Orders component
+- added border and border--no-box-shadow helper class
+- create Order component under Order/Order folder
 
-added border and border--no-box-shadow helper class
+- Optimize order loading:
 
-create Order component under Order/Order folder
+  - set orders=null,
+  - so only request to server if order is null
 
-optimize order loading:
-set orders=null,
-so only request to server if order is null
-
-load orders on checkout page
-
-set order state on submit order, so order state has updated data,
-of course it assume only one user and only one instance is running
+- Load orders on checkout page
+  - Set order state on submit order, so order state has updated data,of course it assume only one user and only one instance is running
 
 # ** 24. Adding authentication in Burger Builder**
 
 # 1. Creating the auth form using Formik
 
-a. install formik
-npm i formic
+- install formik `npm i formic`
+- Add formik to `auth.jsx` file `import formik`
+- Add formik component and follow the formik structure
 
-b. add formik to auth.jsx file
-import formik
+  ```js
+  <Formik initialValues={} onSubmit={(values)=>console.log(values)}>
+  ({values,handleChange,handleSubmit})=>(
+    <form onChange={handleChange} onSubmit={handleSubmit}>
 
-add formik component and follow the formik structure
+    <Input name='input_name' value={values.input_name} />
+    </form>
+  )
+  </Formik>
+  ```
 
-```js
+- Fixed helper css border to add-border, to remove conflict with bootstrap class border
+- Changed border to add-border where previously border class is used
+- Add css className add-border to form,
+- Add button with type='submit'
+- Added register and login route to `Main.jsx`
+- Added link to `Header.jsx`
 
-<Formik initialValues={} onSubmit={(values)=>console.log(values)}>
-({values,handleChange,handleSubmit})=>(
-  <form onChange={handleChange} onSubmit={handleSubmit}>
+# 2. Adding validation
 
-  <Input name='input_name' value={values.input_name} />
-  </form>
-)
-</Formik>
-```
+- Validation using yup library
 
-c. add css className add-border to form,
-d. add button with type='submit'
+  ```js
+  import * as Yup from "yup";
+  const AuthSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string()
+      .min(6, "At least 6 character")
+      .max(20, "Maximum 20 character")
+      .required("Password is required"),
+    password_confirmed: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Password confirmation is required"),
+  });
+  ```
 
-e. fixed helper css border to add-border, to remove conflict with bootstrap class border
-and changed border to add-border where previously border class is used
+  ```js
+        <Formik validationSchema={AuthSchema}>   ({errors})=>(<input name='email'/> {errors.email} )
 
-f. added register and login route to main.jsx
-g.added link to header.jsx
-
-# 2.Adding validation
-
-```js
-import * as Yup from "yup";
-
-const AuthSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string()
-    .min(6, "At least 6 character")
-    .max(20, "Maximum 20 character")
-    .required("Password is required"),
-  password_confirmed: Yup.string()
-    .oneOf([Yup.ref("password"), null], "Passwords must match")
-    .required("Password confirmation is required"),
-});
-```
-
-```js
-       <Formik validationSchema={AuthSchema}>   ({errors})=>(<input name='email'/> {errors.email} )
-
-```
+  ```
 
 # 3. Adding register and signUp - button and link
 
-- Input element label and placeholder will be replaced _ with space if name have _
+- Edited Input element, label and placeholder will be replaced _ with space if name have _
 - yup validation: if isLogin true then
 - ```js
-
   isLogin: Yup.boolean(),
   .when("isLogin", {
       is: false,
@@ -462,18 +431,19 @@ const AuthSchema = Yup.object().shape({
 
   ```
 
-- inside render of Auth.jsx
+- inside render of `Auth.jsx`
 - ```js
   const isLogin = this.props.match.path === "/login" ? true : false;
   if (!isLogin) INITIAL_VALUES.isLogin = false;
   ```
 - added conditional button name
 - added conditional link to register and login
-- ```js
+
+  ```jsx
   {
     isLogin ? (
       <div>
-        Don't have account register <NavLink to="/register">here</NavLink>
+        Do not have account register <NavLink to="/register">here</NavLink>
       </div>
     ) : (
       <div>
@@ -496,7 +466,7 @@ export const AUTH_LOADING = "AUTH_LOADING";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
 ```
 
-- authActionCreators , implemented auth function, need to use asynchronous dispatch, auth take object with properties of email,password and isLogin, post the auth data to firebase endpoint based on isLogin
+- authActionCreators, implemented auth function, need to use asynchronous dispatch, auth take object with properties of email,password and isLogin, post the auth data to firebase endpoint based on isLogin
 
 ```js
 export const auth =
@@ -535,12 +505,12 @@ export const auth =
 
 - added Initial auth token ,
 
-```js
-{
-  token:null,
-  userId:null
-}
-```
+  ```js
+  {
+    token:null,
+    userId:null
+  }
+  ```
 
 - Created authSuccess action creator and in auth action when auth is succeed or the post request is returned successfully then dispatch the authSuccess
 - reducer added authSuccess type which return old state with new token and userId from auth action
@@ -548,86 +518,3 @@ export const auth =
 - Input fixed class to className in error element css class
 - added Redirect element and set to={} property to according path, if logged in then to "/" else redirect to '/login'
 - Header depending on redux token show only links for login or register or other
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
