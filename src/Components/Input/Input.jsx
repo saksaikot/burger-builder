@@ -43,7 +43,7 @@ export default function Input({
       </div>
       {/* {console.log("error", error)} */}
       {error ? (
-        <small id={name + "Help"} class="text-danger">
+        <small id={name + "Help"} className="text-danger">
           {error}
         </small>
       ) : null}

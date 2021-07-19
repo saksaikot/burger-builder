@@ -61,6 +61,9 @@ export const reducer = (state = CONSTANTS.INITIAL_STATE, action) => {
       return { ...state, orders, orderLoading: false };
     case actionTypes.ORDER_LOAD_FAILED:
       return { ...state, orderLoadFailed: true, orderLoading: false };
+
+    case actionTypes.AUTH_SUCCESS:
+      return { ...state, ...action.payload };
     default:
       return state;
   }

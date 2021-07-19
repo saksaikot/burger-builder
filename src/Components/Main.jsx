@@ -1,24 +1,38 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Auth from "./Auth/Auth";
 import BurgerBuilder from "./BurgerBuilder/BurgerBuilder";
 import Checkout from "./BurgerBuilder/Order/Checkout";
 import Orders from "./BurgerBuilder/Order/Orders";
 import Header from "./Header/Header";
 
-export default function Main() {
+const mapStateToProps = (state) => ({
+  token: state.token,
+});
+
+function Main(props) {
+  const loggedIn = props.token ? (
+    <Switch>
+      <Route path="/order" component={Orders} />
+      <Route path="/checkout" component={Checkout} />
+      <Route exact path="/" component={BurgerBuilder} />
+      <Redirect to="/" />
+    </Switch>
+  ) : (
+    <Switch>
+      <Route exact path="/register" component={Auth} />
+      <Route exact path="/login" component={Auth} />
+      <Redirect to="/login" />
+    </Switch>
+  );
   return (
     <div>
       <Header />
 
-      <div className="container">
-        <Route path="/order" component={Orders} />
-        <Route path="/checkout" component={Checkout} />
-        <Route exact path="/register" component={Auth} />
-        <Route exact path="/login" component={Auth} />
-        <Route exact path="/" component={BurgerBuilder} />
-      </div>
-      {/* <BurgerBuilder /> */}
+      <div className="container">{loggedIn}</div>
     </div>
   );
 }
+
+export default connect(mapStateToProps)(Main);

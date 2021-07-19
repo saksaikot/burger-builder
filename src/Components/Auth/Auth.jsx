@@ -76,7 +76,7 @@ class Auth extends Component {
                   </div>
                 )}
               </div>
-              {console.log(errors)}
+              {/* {console.log(errors)} */}
               <Input name="email" value={values.email} error={errors.email} />
 
               <Input

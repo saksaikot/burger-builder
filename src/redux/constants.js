@@ -27,8 +27,13 @@ const INITIAL_ORDER_STATE = {
   orderLoading: true,
   orderLoadFailed: false,
 };
+export const INITIAL_AUTH_STATE = {
+  token: null,
+  userId: null,
+};
 
 export const INITIAL_STATE = {
   ...INITIAL_BURGER_BUILDER_STATE,
   ...INITIAL_ORDER_STATE,
+  ...INITIAL_AUTH_STATE,
 };

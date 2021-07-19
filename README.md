@@ -529,9 +529,25 @@ export const auth =
 
 }
 
+- Auth.jsx component added redux, added auth function from authActionCreators, added onSubmit
+
+# 5.Using redux for authentication token
+
+- added Initial auth token ,
+
+```js
+{
+  token:null,
+  userId:null
+}
 ```
 
-- Auth.jsx component added redux, added auth function from authActionCreators, added onSubmit
+- Created authSuccess action creator and in auth action when auth is succeed or the post request is returned successfully then dispatch the authSuccess
+- reducer added authSuccess type which return old state with new token and userId from auth action
+
+- Input fixed class to className in error element css class
+- added Redirect element and set to={} property to according path, if logged in then to "/" else redirect to '/login'
+- Header depending on redux token show only links for login or register or other
 
 # Getting Started with Create React App
 
@@ -603,6 +619,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+```
 
 ```
 
