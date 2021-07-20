@@ -513,8 +513,49 @@ export const auth =
   ```
 
 - Created authSuccess action creator and in auth action when auth is succeed or the post request is returned successfully then dispatch the authSuccess
-- reducer added authSuccess type which return old state with new token and userId from auth action
+- reducer added, authSuccess which return old state with new token and userId from auth action
 
 - Input fixed class to className in error element css class
 - added Redirect element and set to={} property to according path, if logged in then to "/" else redirect to '/login'
 - Header depending on redux token show only links for login or register or other
+
+# 6. Using localStorage to store token
+
+- Added new actionType saveOrder, separated action to fix saveOrder in redux state, previously saving order was not setting the resetBurgerState correctly.
+- Refactored `resetState` to `resetBurgerState`
+- **Fixed an bug I previously produced, state was not resetting correctly, cause i was copying array of object which is not a deep copy, was only copied object reference**.
+- updated reducer, and component it was using, set the `ingredients:[{name:'salad',amount:0}...]` hard coded.
+- Added `localAuthCheck` in authActionCreators
+- used useEffect instead of class component componentDidMount
+
+  ```js
+  useEffect(() => {
+    return () => {
+      code - clean - up;
+    };
+  }, [dependent]);
+  ```
+
+- add `// eslint-disable-next-line react-hooks/exhaustive-deps` to remove react hook useEffect remove dependency warning
+
+- used localStorage to save `token`,`userId` and `expires` value
+- I mistake to load the order when user logged in, just need to add dispatch fetchOrder when user is logged in `dispatch(fetchOrders());`
+
+# 7. Adding logout option
+
+- Added logout dispatch to `authActionCreators.js`
+- Added `LogOut` component in `Auth` folder
+  - will redirect to '/', so imported Redirect for react-router-dom
+  - connected with redux and added logout dispatch method
+  - used useEffect hook to run the logout at componentDidMount equivalent - no return , empty array dependency, with jslint exception ` // eslint-disable-next-line react-hooks/exhaustive-deps`
+- added logout link to `Header.jsx` component
+
+  ```js
+  <NavItem>
+    <NavLink exact to="/logout" className="navbar__nav-link">
+      Logout
+    </NavLink>
+  </NavItem>
+  ```
+
+- added logout route to `main.jsx` ` <Route path="/logout" component={LogOut} />`

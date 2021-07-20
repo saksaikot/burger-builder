@@ -4,6 +4,7 @@ export default function Order({ customer, ingredients, orderTime, price, id }) {
   return (
     <div className="add-border my-3">
       <p>Order number:{id}</p>
+      <p>Customer Name:{customer.name}</p>
       <p>Delivery Address:{customer.address}</p>
 
       <p>

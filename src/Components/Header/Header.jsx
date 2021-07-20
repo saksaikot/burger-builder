@@ -23,6 +23,11 @@ function Header(props) {
           Order
         </NavLink>
       </NavItem>
+      <NavItem>
+        <NavLink exact to="/logout" className="navbar__nav-link">
+          Logout
+        </NavLink>
+      </NavItem>
     </>
   ) : (
     <NavItem>

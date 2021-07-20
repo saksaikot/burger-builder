@@ -6,19 +6,25 @@ export const INGREDIENTS_PRICE = {
 };
 export const PAYMENT_OPTION = ["Cash on delivery", "Bkash"];
 
+export const INITIAL_INGREDIENTS = [
+  { name: "Salad", amount: 0 },
+  { name: "Meat", amount: 0 },
+  { name: "Cheese", amount: 0 },
+];
+
+export const INITIAL_CHECKOUT = {
+  name: "",
+  address: "",
+  phone: "",
+  payment: PAYMENT_OPTION[0],
+};
+
 export const INITIAL_BURGER_BUILDER_STATE = {
-  ingredients: [
-    { name: "Salad", amount: 0 },
-    { name: "Meat", amount: 0 },
-    { name: "Cheese", amount: 0 },
-  ],
+  ingredients: [...INITIAL_INGREDIENTS],
   totalPrice: BASE_PRICE,
   purchasable: false,
   checkout: {
-    name: "",
-    address: "",
-    phone: "",
-    payment: PAYMENT_OPTION[0],
+    ...INITIAL_CHECKOUT,
   },
 };
 

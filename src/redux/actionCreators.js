@@ -13,8 +13,8 @@ export const updateCheckoutForm = (checkout) => ({
   payload: checkout,
 });
 
-export const resetState = () => ({
-  type: actionType.RESET_STATE,
+export const resetBurgerState = () => ({
+  type: actionType.RESET_BURGER_STATE,
 });
 
 export const loadOrders = (orders) => ({
@@ -38,3 +38,8 @@ export const fetchOrders = () => (dispatch) => {
       dispatch(orderLoadFailed());
     });
 };
+
+export const saveOrder = (order) => ({
+  type: actionType.SAVE_ORDER,
+  payload: order,
+});

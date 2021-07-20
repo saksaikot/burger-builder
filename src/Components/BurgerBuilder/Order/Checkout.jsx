@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { Modal, ModalBody } from "reactstrap";
 import {
   updateCheckoutForm,
-  resetState,
-  loadOrders,
+  resetBurgerState,
+  saveOrder,
   fetchOrders,
 } from "../../../redux/actionCreators";
 import { PAYMENT_OPTION } from "../../../redux/constants";
@@ -28,8 +28,8 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => ({
   updateCheckoutForm: (checkout) => dispatch(updateCheckoutForm(checkout)),
-  resetState: (checkout) => dispatch(resetState()),
-  loadOrders: (orders) => dispatch(loadOrders(orders)),
+  resetBurgerState: () => dispatch(resetBurgerState()),
+  saveOrder: (order) => dispatch(saveOrder(order)),
   fetchOrders: () => dispatch(fetchOrders()),
 });
 
@@ -40,9 +40,9 @@ class Checkout extends Component {
     modalIsOpen: false,
   };
 
-  componentDidMount() {
-    if (this.props.orders === null) this.props.loadOrders();
-  }
+  // componentDidMount() {
+  //   if (this.props.orders === null) this.props.loadOrders();
+  // }
   handleOnChange = (event) => {
     const checkout = { ...this.props.checkout };
     checkout[event.target.name] = event.target.value;
@@ -83,8 +83,8 @@ class Checkout extends Component {
             modalIsOpen: true,
             // orders: { ...this.props.orders, order },
           });
-          this.props.loadOrders({ ...this.props.orders, order });
-          this.props.resetState();
+          this.props.saveOrder({ order });
+          this.props.resetBurgerState();
         } else {
           this.setState({
             submitMessage: "Can not place your order, try again",

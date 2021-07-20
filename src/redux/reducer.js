@@ -47,23 +47,44 @@ export const reducer = (state = CONSTANTS.INITIAL_STATE, action) => {
       const checkout = action.payload;
       return { ...state, checkout };
 
-    case actionTypes.RESET_STATE:
-      return { ...state, ...CONSTANTS.INITIAL_BURGER_BUILDER_STATE };
+    case actionTypes.RESET_BURGER_STATE:
+      console.log(CONSTANTS.INITIAL_BURGER_BUILDER_STATE, "RESET_BURGER_STATE");
+
+      return {
+        ...state,
+        ...CONSTANTS.INITIAL_BURGER_BUILDER_STATE,
+        ingredients: [
+          { name: "Salad", amount: 0 },
+          { name: "Meat", amount: 0 },
+          { name: "Cheese", amount: 0 },
+        ],
+      };
 
     case actionTypes.LOAD_ORDERS:
       const { payload } = action;
-      console.log(payload);
+      // console.log(payload, "LOAD_ORDERS payload");
       const orders = [];
       if (payload !== null)
         for (let key in payload) {
           orders.push({ ...payload[key], id: key });
         }
+      console.log(orders, "LOAD_ORDERS orders");
+
       return { ...state, orders, orderLoading: false };
+
+    case actionTypes.SAVE_ORDER:
+      const newOrders = [...state.orders, action.payload.order];
+
+      return { ...state, orders: newOrders, orderLoading: false };
+
     case actionTypes.ORDER_LOAD_FAILED:
       return { ...state, orderLoadFailed: true, orderLoading: false };
 
     case actionTypes.AUTH_SUCCESS:
       return { ...state, ...action.payload };
+    case actionTypes.AUTH_LOGOUT:
+      return { ...state, token: null, userId: null, expires: null };
+
     default:
       return state;
   }
