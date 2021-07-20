@@ -85,6 +85,9 @@ export const reducer = (state = CONSTANTS.INITIAL_STATE, action) => {
     case actionTypes.AUTH_LOGOUT:
       return { ...state, token: null, userId: null, expires: null };
 
+    case actionTypes.AUTH_LOADING:
+      return { ...state, authLoading: action.payload };
+
     default:
       return state;
   }

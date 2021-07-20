@@ -17,17 +17,25 @@ export const auth =
     const apiAction = isLogin ? "signInWithPassword" : "signUp";
 
     const apiEndPoint = `https://identitytoolkit.googleapis.com/v1/accounts:${apiAction}?key=${API_KEY}`;
+    dispatch(authLoading(true));
+    axios
+      .post(apiEndPoint, authData)
+      .then((response) => {
+        dispatch(authLoading(false));
 
-    axios.post(apiEndPoint, authData).then((response) => {
-      const { data } = response;
-      const { idToken, localId, expiresIn } = data;
-      localStorage.setItem("token", idToken);
-      localStorage.setItem("userId", localId);
-      const expires = new Date(new Date().getTime() + expiresIn * 1000);
-      localStorage.setItem("expires", expires);
-      dispatch(authSuccess({ token: idToken, userId: localId }));
-      dispatch(fetchOrders());
-    });
+        const { data } = response;
+        const { idToken, localId, expiresIn } = data;
+        localStorage.setItem("token", idToken);
+        localStorage.setItem("userId", localId);
+        const expires = new Date(new Date().getTime() + expiresIn * 1000);
+        localStorage.setItem("expires", expires);
+        dispatch(authSuccess({ token: idToken, userId: localId }));
+        dispatch(fetchOrders());
+      })
+      .catch((error) => {
+        console.log("auth loading error", error);
+        dispatch(authLoading(false));
+      });
   };
 
 export const logout = () => {
@@ -50,4 +58,11 @@ export const localAuthCheck = () => (dispatch) => {
   dispatch(authSuccess({ token: token, userId: userId }));
 
   dispatch(fetchOrders());
+};
+
+export const authLoading = (isLoading) => {
+  return {
+    type: actionTypes.AUTH_LOADING,
+    payload: isLoading,
+  };
 };

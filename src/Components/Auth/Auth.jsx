@@ -6,9 +6,14 @@ import * as Yup from "yup";
 import { NavLink } from "react-router-dom";
 import { auth } from "../../redux/authActionCreators";
 import { connect } from "react-redux";
+import Loader from "../Loader/Loader";
 
 const mapDispatchToProps = (dispatch) => ({
   auth: (user) => dispatch(auth(user)),
+});
+const mapStateToProps = (state) => ({
+  authLoading: state.authLoading,
+  authLoadingFailedMessage: state.authLoadingFailedMessage,
 });
 
 const INITIAL_VALUES = {
@@ -49,8 +54,11 @@ class Auth extends Component {
   render() {
     // console.log(this.props);
     const { isLogin } = this.state;
+    const { authLoading, authLoadingFailedMessage } = this.props;
     INITIAL_VALUES.isLogin = isLogin;
-    return (
+
+    const loadLoader = authLoading ? <Loader /> : null;
+    const form = (
       <div>
         <Formik
           initialValues={INITIAL_VALUES}
@@ -103,7 +111,9 @@ class Auth extends Component {
         </Formik>
       </div>
     );
+
+    return loadLoader || form;
   }
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

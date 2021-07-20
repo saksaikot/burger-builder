@@ -36,6 +36,8 @@ const INITIAL_ORDER_STATE = {
 export const INITIAL_AUTH_STATE = {
   token: null,
   userId: null,
+  authLoading: false,
+  authLoadingFailedMessage: null,
 };
 
 export const INITIAL_STATE = {

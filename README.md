@@ -559,3 +559,24 @@ export const auth =
   ```
 
 - added logout route to `main.jsx` ` <Route path="/logout" component={LogOut} />`
+
+# 8. Adding Loader
+
+- Added `authLoading` action, which takes `isLoading` and send it to payload
+- dispatched authLoading in `auth` action before post request set authLoading to true, then when finished set authLoading to false.
+- added initial state in `CONSTANT.js`
+
+  ```js
+  {
+    authLoading:false,
+    authLoadingFailedMessage:null
+  }
+
+  ```
+
+- added AUTH_LOADING to reducer, set authLoading from action.payload
+- load authLoading,authLoadingFailedMessage state from redux
+- import `Loader`
+- set `loadLoader` to `Loader` or false based on `authLoading`
+- Assign previous return to `form` constant
+- then in `return (loadLoader || form)`
