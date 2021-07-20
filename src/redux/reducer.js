@@ -87,6 +87,8 @@ export const reducer = (state = CONSTANTS.INITIAL_STATE, action) => {
 
     case actionTypes.AUTH_LOADING:
       return { ...state, authLoading: action.payload };
+    case actionTypes.AUTH_FAILED_MESSAGE:
+      return { ...state, authLoadingFailedMessage: action.payload };
 
     default:
       return state;

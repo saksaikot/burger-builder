@@ -22,6 +22,7 @@ export const auth =
       .post(apiEndPoint, authData)
       .then((response) => {
         dispatch(authLoading(false));
+        dispatch(authLoadingFailedMessage(null));
 
         const { data } = response;
         const { idToken, localId, expiresIn } = data;
@@ -35,6 +36,7 @@ export const auth =
       .catch((error) => {
         console.log("auth loading error", error);
         dispatch(authLoading(false));
+        dispatch(authLoadingFailedMessage(error.response.data.error.message));
       });
   };
 
@@ -66,3 +68,8 @@ export const authLoading = (isLoading) => {
     payload: isLoading,
   };
 };
+
+export const authLoadingFailedMessage = (message) => ({
+  type: actionTypes.AUTH_FAILED_MESSAGE,
+  payload: message,
+});

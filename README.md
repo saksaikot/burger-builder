@@ -580,3 +580,11 @@ export const auth =
 - set `loadLoader` to `Loader` or false based on `authLoading`
 - Assign previous return to `form` constant
 - then in `return (loadLoader || form)`
+
+# 9. Error Handling
+
+- added actionType `AUTH_FAILED_MESSAGE`
+- added `authLoadingFailedMessage` in authActionCreator, which takes a message and send it to payload
+- dispatched `authLoadingFailedMessage(null)` on success and on failed `authLoadingFailedMessage(error-message)`
+- in reducer added AUTH_FAILED_MESSAGE action type and updated authLoadingFailedMessage
+- show authLoadingFailedMessage inside text-danger div

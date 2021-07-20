@@ -84,7 +84,8 @@ class Auth extends Component {
                   </div>
                 )}
               </div>
-              {/* {console.log(errors)} */}
+              <div className="text-danger">{authLoadingFailedMessage}</div>
+
               <Input name="email" value={values.email} error={errors.email} />
 
               <Input
