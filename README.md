@@ -1,5 +1,3 @@
-# Live demo [Bohubrihi Burger Builder](https://burger-builder-d3e66.web.app/ "Bohubrihi Burger Builder")
-
 # **23.Burger Builder Project**
 
 # 1.project setup
