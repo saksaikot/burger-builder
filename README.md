@@ -1,3 +1,7 @@
+# live demo
+
+- Firebase link [Burger Builder](https://burger-builder-d3e66.web.app)
+
 # **23.Burger Builder Project**
 
 # 1.project setup
@@ -655,3 +659,7 @@ export const auth =
     ```
 - Fixed `SAVE_ORDER` in reducer, in case of null just push the order and not use spread operator
 - Comment out or removed console.log lines
+
+# 25. Deploying project to firebase hosting
+
+- Firebase link [Burger Builder](https://burger-builder-d3e66.web.app)
