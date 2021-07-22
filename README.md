@@ -661,3 +661,20 @@ export const auth =
 # 25. Deploying project to firebase hosting
 
 - Firebase link [Burger Builder](https://burger-builder-d3e66.web.app)
+
+# Fixed nav mobile view
+
+- added width to state
+  ```js
+  const [width, setWidth] = useState(window.innerWidth);
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+  ```
+- `if(width<=768)` then display mobile nav else normal nav

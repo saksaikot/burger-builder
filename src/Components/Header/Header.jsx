@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+} from "reactstrap";
 
 import Logo from "../../assets/images/logo.png";
 
@@ -11,6 +18,20 @@ const mapStateToProps = (state) => ({
 });
 
 function Header(props) {
+  const [collapsed, setCollapsed] = useState(true);
+  const toggleNavbar = () => setCollapsed(!collapsed);
+
+  const [width, setWidth] = useState(window.innerWidth);
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
   const navLinks = props.token ? (
     <>
       <NavItem>
@@ -40,13 +61,36 @@ function Header(props) {
     </NavItem>
   );
 
+  const nav = (
+    <Nav className="mr-md-5 primary-accent" navbar>
+      {navLinks}
+    </Nav>
+  );
+  const navByDisplay =
+    width <= 768 ? (
+      <>
+        <NavbarToggler onClick={toggleNavbar} />
+        <Collapse isOpen={!collapsed} navbar>
+          {nav}
+        </Collapse>
+      </>
+    ) : (
+      nav
+    );
+
   return (
-    <Navbar className="navbar primary-accent">
+    <Navbar className="primary-accent" color="faded">
       <div className="container">
-        <NavbarBrand className="mr-auto ml-md-5 navbar__brand" href="/">
-          <img src={Logo} className="navbar__logo" alt="burger builder logo" />
+        <NavbarBrand className="mr-auto ml-md-5 navbar__brand">
+          <NavLink to="/" className="navbar__nav-link">
+            <img
+              src={Logo}
+              className="navbar__logo"
+              alt="burger builder logo"
+            />
+          </NavLink>
         </NavbarBrand>
-        <Nav className="mr-md-5">{navLinks}</Nav>
+        {navByDisplay}
       </div>
     </Navbar>
   );
