@@ -678,3 +678,4 @@ export const auth =
   }, []);
   ```
 - `if(width<=768)` then display mobile nav else normal nav
+- fixed nav link click to toggle

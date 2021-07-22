@@ -62,7 +62,7 @@ function Header(props) {
   );
 
   const nav = (
-    <Nav className="mr-md-5 primary-accent" navbar>
+    <Nav className="mr-md-5 primary-accent" navbar onClick={toggleNavbar}>
       {navLinks}
     </Nav>
   );
