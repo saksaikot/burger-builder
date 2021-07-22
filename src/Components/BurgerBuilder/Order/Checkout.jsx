@@ -12,18 +12,14 @@ import { PAYMENT_OPTION } from "../../../redux/constants";
 import Input from "../../Input/Input";
 import Loader from "../../Loader/Loader";
 
-const mapStateToProps = ({
-  checkout,
-  totalPrice,
-  ingredients,
-  purchasable,
-  orders,
-}) => ({
-  checkout,
-  totalPrice,
-  ingredients,
-  purchasable,
-  orders,
+const mapStateToProps = (state) => ({
+  checkout: state.checkout,
+  totalPrice: state.totalPrice,
+  ingredients: state.ingredients,
+  purchasable: state.purchasable,
+  orders: state.orders,
+  userId: state.userId,
+  token: state.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -63,20 +59,25 @@ class Checkout extends Component {
       ingredients,
       price: totalPrice,
       orderTime: new Date(),
+      userId: this.props.userId,
     };
+    // console.log(order, "checkout order");
 
     this.setState({ submitting: true });
 
     axios
       .post(
-        "https://burger-builder-d3e66-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json",
+        `https://burger-builder-d3e66-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json?token=${this.props.token}`,
         order
       )
       .then((response) => {
+        // console.log(response.data, "checkout  response data");
+        // console.log(response.status, "checkout  response status");
+
         if (response.status === 200) {
-          console.log(response);
           order.id = response.data.name;
-          console.log(order, this.props.orders);
+          // order.uid = this.props.userId;
+          // console.log(order, this.props.orders);
           this.setState({
             submitMessage: "Order placed successfully",
             submitting: false,
@@ -93,14 +94,15 @@ class Checkout extends Component {
           });
         }
       })
-      .catch((error) =>
+      .catch((error) => {
+        console.log(error);
         this.setState({
           submitMessage:
             "Can not place your order, please check your internet and try again",
           submitting: false,
           modalIsOpen: true,
-        })
-      );
+        });
+      });
   };
 
   handleModal = () => {

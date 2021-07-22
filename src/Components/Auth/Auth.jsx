@@ -41,10 +41,17 @@ const AuthSchema = Yup.object().shape({
 class Auth extends Component {
   state = { isLogin: true };
   componentDidMount() {
-    const isLogin = this.props.match.path === "/login" ? true : false;
-    this.setState({ isLogin });
+    this.routeChange();
   }
-
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.routeChange();
+    }
+  }
+  routeChange = () =>
+    this.setState({
+      isLogin: this.props.match.path === "/login" ? true : false,
+    });
   handleSubmit = (values) => {
     // console.log(values);
 
@@ -52,7 +59,7 @@ class Auth extends Component {
   };
 
   render() {
-    // console.log(this.props);
+    // console.log(this.props, this.state);
     const { isLogin } = this.state;
     const { authLoading, authLoadingFailedMessage } = this.props;
     INITIAL_VALUES.isLogin = isLogin;

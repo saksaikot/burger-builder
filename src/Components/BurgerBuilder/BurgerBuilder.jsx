@@ -55,7 +55,6 @@ class BurgerBuilder extends Component {
     return (
       <>
         <div className="container d-flex flex-md-row flex-column justify-content-center align-items-center">
-          {console.log(ingredients, "ingredients BurgerBuilder")}
           <Burger ingredients={ingredients} />
           <Control
             handleMoreLessIngredient={handleMoreLessIngredient.bind(this)}

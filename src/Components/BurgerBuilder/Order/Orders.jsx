@@ -21,7 +21,7 @@ class Orders extends Component {
   render() {
     const { orders, orderLoading, orderLoadFailed } = this.props;
 
-    console.log(orderLoading, "orderLoading Orders");
+    // console.log(orderLoading, "orderLoading Orders");
 
     const hasFailedToLoad = <p>Cannot load order from server</p>;
     const hasNoOrder = <p>sorry no order</p>;

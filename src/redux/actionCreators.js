@@ -26,10 +26,10 @@ export const orderLoadFailed = () => ({
   type: actionType.ORDER_LOAD_FAILED,
 });
 
-export const fetchOrders = () => (dispatch) => {
+export const fetchOrders = (userId, token) => (dispatch) => {
   axios
     .get(
-      "https://burger-builder-d3e66-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json"
+      `https://burger-builder-d3e66-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json?orderBy="userId"&equalTo="${userId}"&auth=${token}`
     )
     .then((response) => {
       dispatch(loadOrders(response.data));

@@ -30,7 +30,7 @@ export const reducer = (state = CONSTANTS.INITIAL_STATE, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_INGREDIENT_AMOUNT:
       // console.log(this);
-      console.log("action", action);
+      // console.log("action", action);
       const { name, amount } = action.payload;
       const index = ingredients.findIndex((x) => x.name === name);
       if (ingredients[index].amount === 0 && amount === -1) return state;
@@ -48,7 +48,7 @@ export const reducer = (state = CONSTANTS.INITIAL_STATE, action) => {
       return { ...state, checkout };
 
     case actionTypes.RESET_BURGER_STATE:
-      console.log(CONSTANTS.INITIAL_BURGER_BUILDER_STATE, "RESET_BURGER_STATE");
+      // console.log(CONSTANTS.INITIAL_BURGER_BUILDER_STATE, "RESET_BURGER_STATE");
 
       return {
         ...state,
@@ -68,12 +68,15 @@ export const reducer = (state = CONSTANTS.INITIAL_STATE, action) => {
         for (let key in payload) {
           orders.push({ ...payload[key], id: key });
         }
-      console.log(orders, "LOAD_ORDERS orders");
+      // console.log(orders, "LOAD_ORDERS orders");
 
       return { ...state, orders, orderLoading: false };
 
     case actionTypes.SAVE_ORDER:
-      const newOrders = [...state.orders, action.payload.order];
+      const newOrders =
+        state.orders === null
+          ? [action.payload.order]
+          : [...state.orders, action.payload.order];
 
       return { ...state, orders: newOrders, orderLoading: false };
 

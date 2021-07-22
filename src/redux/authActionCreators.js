@@ -31,7 +31,7 @@ export const auth =
         const expires = new Date(new Date().getTime() + expiresIn * 1000);
         localStorage.setItem("expires", expires);
         dispatch(authSuccess({ token: idToken, userId: localId }));
-        dispatch(fetchOrders());
+        dispatch(fetchOrders(localId, idToken));
       })
       .catch((error) => {
         console.log("auth loading error", error);
@@ -59,7 +59,7 @@ export const localAuthCheck = () => (dispatch) => {
   // console.log("calling localAuthCheck");
   dispatch(authSuccess({ token: token, userId: userId }));
 
-  dispatch(fetchOrders());
+  dispatch(fetchOrders(userId, token));
 };
 
 export const authLoading = (isLoading) => {

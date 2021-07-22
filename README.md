@@ -588,3 +588,70 @@ export const auth =
 - dispatched `authLoadingFailedMessage(null)` on success and on failed `authLoadingFailedMessage(error-message)`
 - in reducer added AUTH_FAILED_MESSAGE action type and updated authLoadingFailedMessage
 - show authLoadingFailedMessage inside text-danger div
+
+# 10. Showing user specific order
+
+- firebase realtime db endpoint if orders are separated by user
+
+  - endpoint `https://burger-builder-d3e66-default-rtdb.asia-southeast1.firebasedatabase.app/orders/${userId}.json?auth=${token}`
+  - firebase realtime db rules
+    ```json
+    {
+      "rules": {
+        "orders": {
+          "$uid": {
+            ".read": "$uid === auth.uid",
+            ".write": "$uid === auth.uid"
+          }
+        }
+      }
+    }
+    ```
+
+- orders with userId includes in order data
+
+  - db rules
+
+    ```json
+    {
+      "rules": {
+        "orders": {
+          ".read": "auth.uid != null && query.equalTo == auth.uid",
+          ".write": "newData.child('userId').val() == auth.uid",
+
+          ".indexOn": ["userId"]
+        }
+      }
+    }
+    ```
+
+  - save url `https://burger-builder-d3e66-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json?token=${this.props.token}`
+  - data
+
+    ```js
+    const order = {
+      customer: checkout,
+      ingredients,
+      price: totalPrice,
+      orderTime: new Date(),
+      userId: this.props.userId,
+    };
+    ```
+
+  - fetch order url `https://burger-builder-d3e66-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json?orderBy="userId"&equalTo="${userId}"&auth=${token}`
+  - here orderBy must put inside double quote "", also equalTo
+
+- Fixed `Auth.jsx` component , state was not updating accordingly
+  - updated componentDidMount and componentDidUpdate
+    ```js
+      componentDidMount() {
+    this.routeChange();
+    }
+    componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.routeChange();
+    }
+    }
+    ```
+- Fixed `SAVE_ORDER` in reducer, in case of null just push the order and not use spread operator
+- Comment out or removed console.log lines
